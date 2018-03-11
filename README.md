@@ -16,9 +16,8 @@ PeeDeeFul.DocumentModel
 A class library targetting .NET Standard. You use this library to model your PDF documents much like you use
 a HTML DOM to model a HTML document or an XML DOM to model an XML document.
 
-One of the basic design principles of this library is that it is serializable to and deserializable from *JSON*,
-which enables deeper integration with the *PeeDeeFul.js* library. In fact, all DOM types in *PeeDeeFul.js* are
-generated from the DOM classes in *PeeDeeFul.DocumentModel*.
+The DOM can be serialized to [MDDDL (MigraDoc Document Description Language)](http://www.pdfsharp.net/wiki/MigraDocDDL.ashx), 
+which is a text based represenation of a PDF document.
 
 
 PeeDeeFul.Server
@@ -42,7 +41,10 @@ PeeDeeFul.Client
 A class library targetting .NET Standard. This library is responsible for communicating with the
 *PeeDeeFul.Server* application.
 
-To create a PDF document, you first build the DOM using *PeeDeeFul.DocumentModel*. Then you
+When creating a PDF document with the client library, you first build the PDF DOM with the help of
+the *PeeDeeFul.DocumentModel* library. Then you pass the DOM on to the client library which then
+serializes the DOM to *MDDDL* before sending it to the server. The server takes the serialized DOM
+and renders it to a PDF document and returns it.
 
 
 PeeDeeFul.js

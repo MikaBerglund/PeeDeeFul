@@ -26,7 +26,10 @@ namespace PeeDeeFul.DocumentModel
         /// <param name="writer">The writer object to write the DDL to.</param>
         public override void WriteDdl(TextWriter writer)
         {
-            base.WriteDdl(writer);
+            foreach(var child in this.Children)
+            {
+                child.WriteDdl(writer);
+            }
         }
 
     }

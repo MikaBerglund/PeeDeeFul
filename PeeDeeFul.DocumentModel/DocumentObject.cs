@@ -44,19 +44,11 @@ namespace PeeDeeFul.DocumentModel
 
         private List<DocumentObject> ChildList = new List<DocumentObject>();
         /// <summary>
-        /// Sets or returns the child object to the current object.
+        /// Returns the child object to the current object.
         /// </summary>
-        public DocumentObject[] Children
+        public IEnumerable<DocumentObject> Children
         {
-            get { return this.ChildList.ToArray(); }
-            set
-            {
-                this.ChildList = new List<DocumentObject>();
-                value.ToList().ForEach(e =>
-                {
-                    this.Add(e);
-                });
-            }
+            get { return this.ChildList.AsQueryable(); }
         }
 
         /// <summary>
@@ -80,6 +72,9 @@ namespace PeeDeeFul.DocumentModel
 
         }
 
+        /// <summary>
+        /// Serializes the object and all its child objects to their MDDDL representation.
+        /// </summary>
         public override string ToString()
         {
             var builder = new StringBuilder();
@@ -91,6 +86,11 @@ namespace PeeDeeFul.DocumentModel
         }
 
 
+
+        /// <summary>
+        /// Adds the given object as a child object.
+        /// </summary>
+        /// <param name="child"></param>
         protected void Add(DocumentObject child)
         {
             if (null == child) throw new ArgumentNullException(nameof(child));
@@ -99,6 +99,10 @@ namespace PeeDeeFul.DocumentModel
             this.ChildList.Add(child);
         }
 
+        /// <summary>
+        /// Creates a new object of the given type and adds it as a child to the current object.
+        /// </summary>
+        /// <typeparam name="TChild">The type of child to add.</typeparam>
         protected TChild Add<TChild>() where TChild : DocumentObject
         {
             var child = Activator.CreateInstance<TChild>();

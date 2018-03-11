@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeeDeeFul.DocumentModel", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeeDeeFul.Client", "PeeDeeFul.Client\PeeDeeFul.Client.csproj", "{A0AABF20-B49E-4B44-AD11-2C72EB8EEAF8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeeDeeFul.DocumentModel.Tests", "PeeDeeFul.DocumentModel.Tests\PeeDeeFul.DocumentModel.Tests.csproj", "{242D684B-7A8C-404E-AF2F-36FBFB982B11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{A0AABF20-B49E-4B44-AD11-2C72EB8EEAF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0AABF20-B49E-4B44-AD11-2C72EB8EEAF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0AABF20-B49E-4B44-AD11-2C72EB8EEAF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{242D684B-7A8C-404E-AF2F-36FBFB982B11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{242D684B-7A8C-404E-AF2F-36FBFB982B11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{242D684B-7A8C-404E-AF2F-36FBFB982B11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{242D684B-7A8C-404E-AF2F-36FBFB982B11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

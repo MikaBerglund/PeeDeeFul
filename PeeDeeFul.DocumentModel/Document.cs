@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace PeeDeeFul.DocumentModel
@@ -17,14 +18,35 @@ namespace PeeDeeFul.DocumentModel
         /// <summary>
         /// Creates a new document.
         /// </summary>
-        public Document() : base(null) { }
+        public Document() : base(null)
+        {
+        }
 
+
+        public Section LastSection
+        {
+            get { return this.Sections.Last(); }
+        }
 
         public IEnumerable<Section> Sections
         {
             get { return this.GetChildren<Section>(); }
         }
 
+
+
+        /// <summary>
+        /// Adds the given section to the document.
+        /// </summary>
+        public Document Add(Section section)
+        {
+            this.Add(section);
+            return this;
+        }
+
+        /// <summary>
+        /// Adds a new section to the document and returns the section.
+        /// </summary>
         public Section AddSection()
         {
             return this.Add<Section>();
@@ -33,13 +55,13 @@ namespace PeeDeeFul.DocumentModel
 
         public override void WriteDdl(TextWriter writer)
         {
-            // TODO: Write the doucument stuff here...
+            writer.WriteLine("\\document");
+            writer.WriteLine("[");
+            writer.WriteLine("]");
 
-            // Then add all child objects.
+            writer.WriteLine("{");
             base.WriteDdl(writer);
-
-
-            // TODO: Then close of anything we need to close up.
+            writer.WriteLine("}");
 
         }
     }
