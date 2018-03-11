@@ -16,6 +16,32 @@ namespace PeeDeeFul.DocumentModel.Tests
             ParseDdl(doc);
         }
 
+        [TestMethod]
+        public void CreateDOM02()
+        {
+            var doc = new Document();
+            // Just testing various unit types.
+            doc.AddSection().SetPageSetup(new PageSetup()
+            {
+                TopMargin = new Unit(1),
+                RightMargin = new Unit(2.5, UnitType.Centimeter),
+                BottomMargin = new Unit(0.8, UnitType.Inch),
+                LeftMargin = new Unit(20, UnitType.Millimeter),
+                PageHeight = new Unit(100, UnitType.Pica),
+                PageWidth = new Unit(480, UnitType.Point)
+            });
+
+            ParseDdl(doc);
+        }
+
+        [TestMethod]
+        public void CreateDOM03()
+        {
+            var doc = new Document().AddSection().Document;
+            doc.LastSection.SetPrimaryHeader();
+            
+            ParseDdl(doc);
+        }
 
 
         /// <summary>
@@ -29,8 +55,9 @@ namespace PeeDeeFul.DocumentModel.Tests
             {
                 doc.WriteDdl(writer);
             }
+            var ddl = sb.ToString();
 
-            var mDoc = MigraDoc.DocumentObjectModel.IO.DdlReader.DocumentFromString(sb.ToString());
+            var mDoc = MigraDoc.DocumentObjectModel.IO.DdlReader.DocumentFromString(ddl);
             MigraDoc.Rendering.PdfDocumentRenderer renderer = new MigraDoc.Rendering.PdfDocumentRenderer(true)
             {
                 Document = mDoc

@@ -95,7 +95,7 @@ namespace PeeDeeFul.DocumentModel
         {
             if (null == child) throw new ArgumentNullException(nameof(child));
             child.Parent = this;
-            child.Document = this.Document;
+            child.Document = this.GetDocument(this);
             this.ChildList.Add(child);
         }
 
@@ -108,6 +108,22 @@ namespace PeeDeeFul.DocumentModel
             var child = Activator.CreateInstance<TChild>();
             this.Add(child);
             return child;
+        }
+
+        /// <summary>
+        /// Returns the first child object of the given type.
+        /// </summary>
+        protected TChild GetChild<TChild>() where TChild : DocumentObject
+        {
+            return this.GetChildren<TChild>().FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Returns the first child that matches the given predicate.
+        /// </summary>
+        protected TChild GetChild<TChild>(Func<TChild, bool> predicate) where TChild : DocumentObject
+        {
+            return this.GetChildren<TChild>(predicate).FirstOrDefault();
         }
 
         /// <summary>
@@ -127,6 +143,39 @@ namespace PeeDeeFul.DocumentModel
         protected IEnumerable<TChild> GetChildren<TChild>(Func<TChild, bool> predicate) where TChild : DocumentObject
         {
             return from x in this.GetChildren<TChild>().Where(predicate) select x;
+        }
+
+        private Dictionary<string, object> Properties = new Dictionary<string, object>();
+        protected TProperty GetProperty<TProperty>(string name)
+        {
+            if(this.Properties.ContainsKey(name) && this.Properties[name] is TProperty)
+            {
+                return (TProperty)this.Properties[name];
+            }
+            return default(TProperty);
+        }
+
+        protected void SetProperty(string name, object value)
+        {
+            if(value is DocumentObject)
+            {
+                var doc = value as DocumentObject;
+                doc.Parent = this;
+                doc.Document = this.Document;
+            }
+
+            this.Properties[name] = value;
+        }
+
+
+
+        private Document GetDocument(DocumentObject obj)
+        {
+            if(obj is Document)
+            {
+                return (Document)obj;
+            }
+            return obj.Document;
         }
 
     }

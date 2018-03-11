@@ -23,6 +23,7 @@ namespace PeeDeeFul.DocumentModel
         }
 
 
+
         public Section LastSection
         {
             get { return this.Sections.Last(); }
@@ -40,7 +41,7 @@ namespace PeeDeeFul.DocumentModel
         /// </summary>
         public Document Add(Section section)
         {
-            this.Add(section);
+            base.Add(section);
             return this;
         }
 
