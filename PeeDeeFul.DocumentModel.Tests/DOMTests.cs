@@ -43,6 +43,20 @@ namespace PeeDeeFul.DocumentModel.Tests
             ParseDdl(doc);
         }
 
+        [TestMethod]
+        public void CreateDOM04()
+        {
+            var doc = new Document().AddSection().Document.SetInfo(new DocumentInfo()
+            {
+                Author = "Sandy \"Sleepy\" Sandman",
+                Keywords = "Key, words",
+                Subject = "Le subject",
+                Title = "Title is everything"
+            });
+
+            ParseDdl(doc);
+        }
+
 
         /// <summary>
         /// Serializes the given document to DDL and renders a PDF document from it to make sure that 

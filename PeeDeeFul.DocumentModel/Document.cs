@@ -24,17 +24,35 @@ namespace PeeDeeFul.DocumentModel
 
 
 
+        /// <summary>
+        /// Sets or reurns the default page setup that is used on all sections added to the document.
+        /// </summary>
         public PageSetup DefaultPageSetup
         {
             get { return this.GetProperty<PageSetup>(nameof(DefaultPageSetup)); }
             set { this.SetProperty(nameof(DefaultPageSetup), value); }
         }
 
+        /// <summary>
+        /// Sets or returns the document info for the document.
+        /// </summary>
+        public DocumentInfo Info
+        {
+            get { return this.GetProperty<DocumentInfo>(nameof(Info)); }
+            set { this.SetProperty(nameof(Info), value); }
+        }
+
+        /// <summary>
+        /// Returns the last added section.
+        /// </summary>
         public Section LastSection
         {
             get { return this.Sections.Last(); }
         }
 
+        /// <summary>
+        /// Returns all sections.
+        /// </summary>
         public IEnumerable<Section> Sections
         {
             get { return this.GetChildren<Section>(); }
@@ -62,11 +80,18 @@ namespace PeeDeeFul.DocumentModel
             return s;
         }
 
+        public Document SetInfo(DocumentInfo info)
+        {
+            this.Info = info;
+            return this;
+        }
+
 
         public override void WriteDdl(TextWriter writer)
         {
             writer.WriteLine("\\document");
             writer.WriteLine("[");
+            if (null != this.Info) this.Info.WriteDdl(writer);
             writer.WriteLine("]");
 
             writer.WriteLine("{");
@@ -74,5 +99,6 @@ namespace PeeDeeFul.DocumentModel
             writer.WriteLine("}");
 
         }
+
     }
 }

@@ -167,6 +167,24 @@ namespace PeeDeeFul.DocumentModel
             this.Properties[name] = value;
         }
 
+        /// <summary>
+        /// Writes the name and value of a string property to the given writer.
+        /// </summary>
+        /// <param name="name">The name of the property to write.</param>
+        /// <param name="value">The value of the property to write. The property is not written if the value is null or empty.</param>
+        /// <param name="writer">The writer to write to.</param>
+        protected void WriteStringProperty(string name, string value, TextWriter writer)
+        {
+            if(!string.IsNullOrEmpty(value))
+            {
+                writer.Write(name);
+                writer.Write(" = ");
+                writer.Write("\"");
+                writer.Write(value.Replace(@"""", @"\"""));
+                writer.Write("\"");
+                writer.WriteLine();
+            }
+        }
 
 
         private Document GetDocument(DocumentObject obj)
