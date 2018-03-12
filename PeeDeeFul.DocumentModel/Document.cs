@@ -24,6 +24,12 @@ namespace PeeDeeFul.DocumentModel
 
 
 
+        public PageSetup DefaultPageSetup
+        {
+            get { return this.GetProperty<PageSetup>(nameof(DefaultPageSetup)); }
+            set { this.SetProperty(nameof(DefaultPageSetup), value); }
+        }
+
         public Section LastSection
         {
             get { return this.Sections.Last(); }
@@ -42,6 +48,7 @@ namespace PeeDeeFul.DocumentModel
         public Document Add(Section section)
         {
             base.Add(section);
+            if (null == section.PageSetup) section.PageSetup = this.DefaultPageSetup;
             return this;
         }
 
@@ -50,7 +57,9 @@ namespace PeeDeeFul.DocumentModel
         /// </summary>
         public Section AddSection()
         {
-            return this.Add<Section>();
+            var s = new Section(this);
+            this.Add(s);
+            return s;
         }
 
 
