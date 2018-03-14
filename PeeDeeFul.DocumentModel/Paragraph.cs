@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace PeeDeeFul.DocumentModel
@@ -63,6 +64,21 @@ namespace PeeDeeFul.DocumentModel
             return t;
         }
 
-        
+        public override void WriteDdl(TextWriter writer)
+        {
+            writer.WriteLine("\\paragraph");
+            writer.WriteLine("[");
+            writer.WriteLine("]");
+
+            writer.WriteLine("{");
+
+            foreach (var child in this.Children)
+            {
+                child.WriteDdl(writer);
+            }
+
+            writer.WriteLine("}");
+        }
+
     }
 }

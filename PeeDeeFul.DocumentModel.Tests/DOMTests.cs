@@ -66,6 +66,18 @@ namespace PeeDeeFul.DocumentModel.Tests
             ParseDdl(doc);
         }
 
+        [TestMethod]
+        public void CreateDOM06()
+        {
+            var s = Guid.NewGuid().ToString();
+            var doc = new Document().AddSection().AddParagraph(s).Document;
+
+            var ddl = doc.ToString();
+            Assert.IsTrue(ddl.Contains("\\paragraph"), "The created DDL must contain a paragraph definition.");
+            Assert.IsTrue(ddl.Contains(s), "The created DDL must contain the string we put there.");
+        }
+
+
 
         /// <summary>
         /// Serializes the given document to DDL and renders a PDF document from it to make sure that 
