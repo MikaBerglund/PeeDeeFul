@@ -57,6 +57,15 @@ namespace PeeDeeFul.DocumentModel.Tests
             ParseDdl(doc);
         }
 
+        [TestMethod]
+        public void CreateDOM05()
+        {
+            var doc = new Document().AddSection().Document;
+            doc.LastSection.AddParagraph("Hello World! Invoking this method must not cause an exception.");
+
+            ParseDdl(doc);
+        }
+
 
         /// <summary>
         /// Serializes the given document to DDL and renders a PDF document from it to make sure that 

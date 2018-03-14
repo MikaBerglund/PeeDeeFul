@@ -10,29 +10,29 @@ namespace PeeDeeFul.Client.Tests
         [TestMethod]
         public void CreateContext01()
         {
-            var ctx = new ClientContext("appname", new KeyRequestAuthenticator("key1"));
-            Assert.AreEqual<Uri>(new Uri("https://appname.azurewebsites.net"), ctx.Url);
+            var ctx = new PdfClientContext("appname", new KeyRequestAuthenticator("key1"));
+            Assert.AreEqual<Uri>(new Uri("https://appname.azurewebsites.net/api"), ctx.BaseUrl);
         }
 
         [TestMethod]
         public void CreateContext02()
         {
-            var ctx = new ClientContext("https://myapps.mycompany.com/folder1/api", new KeyRequestAuthenticator("key2"));
-            Assert.AreEqual<Uri>(new Uri("https://myapps.mycompany.com"), ctx.Url);
+            var ctx = new PdfClientContext("https://myapps.mycompany.com/folder1/api", new KeyRequestAuthenticator("key2"));
+            Assert.AreEqual<Uri>(new Uri("https://myapps.mycompany.com/folder1/api"), ctx.BaseUrl);
         }
 
         [TestMethod]
         public void CreateContext03()
         {
-            var ctx = new ClientContext("https://myapps.mycompany.com:1234/api", new KeyRequestAuthenticator("key2"));
-            Assert.AreEqual<Uri>(new Uri("https://myapps.mycompany.com:1234"), ctx.Url);
+            var ctx = new PdfClientContext("https://myapps.mycompany.com:1234/api", new KeyRequestAuthenticator("key2"));
+            Assert.AreEqual<Uri>(new Uri("https://myapps.mycompany.com:1234/api"), ctx.BaseUrl);
         }
 
         [TestMethod]
         public void CreateContext04()
         {
-            var ctx = new ClientContext("http://localhost:7071/api/Documents/Render", new KeyRequestAuthenticator("key2"));
-            Assert.AreEqual<Uri>(new Uri("http://localhost:7071/"), ctx.Url);
+            var ctx = new PdfClientContext("http://localhost:7071/somefolder", new KeyRequestAuthenticator("key2"));
+            Assert.AreEqual<Uri>(new Uri("http://localhost:7071/somefolder"), ctx.BaseUrl);
         }
 
         // 

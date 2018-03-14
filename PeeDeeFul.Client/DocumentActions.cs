@@ -13,12 +13,12 @@ namespace PeeDeeFul.Client
     public class DocumentActions
     {
 
-        internal DocumentActions(ClientContext context)
+        internal DocumentActions(PdfClientContext context)
         {
             this.Context = context;
         }
 
-        private ClientContext Context { get; set; }
+        private PdfClientContext Context { get; set; }
 
 
 
@@ -29,7 +29,31 @@ namespace PeeDeeFul.Client
         /// <param name="target">The stream to write the rendered PDF document to.</param>
         public async Task RenderAsync(Document document, Stream target)
         {
+            var sb = new StringBuilder();
+            using (var writer = new StringWriter(sb))
+            {
+                document.WriteDdl(writer);
+            }
 
+            var ddl = sb.ToString();
+            var buffer = Encoding.UTF8.GetBytes(ddl);
+
+            var req = this.Context.CreatePostRequest("Documents/Render");
+            req.ContentLength = buffer.Length;
+            req.ContentType = "application/x-www-form-urlencoded";
+
+            using (var strm = await req.GetRequestStreamAsync())
+            {
+                await strm.WriteAsync(buffer, 0, buffer.Length);
+            }
+
+            using (var response = await req.GetResponseAsync())
+            {
+                using (var strm = response.GetResponseStream())
+                {
+                    await strm.CopyToAsync(target);
+                }
+            }
         }
     }
 }

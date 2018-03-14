@@ -52,7 +52,7 @@ namespace PeeDeeFul.DocumentModel
 
         public Section Add(Paragraph p)
         {
-            this.Add(p);
+            base.Add(p);
             return this;
         }
 

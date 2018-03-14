@@ -8,15 +8,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeeDeeFul.DocumentModel", "PeeDeeFul.DocumentModel\PeeDeeFul.DocumentModel.csproj", "{44CADC59-D91A-4D11-9A3B-D27D9DD82215}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeeDeeFul.DocumentModel", "PeeDeeFul.DocumentModel\PeeDeeFul.DocumentModel.csproj", "{44CADC59-D91A-4D11-9A3B-D27D9DD82215}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeeDeeFul.Client", "PeeDeeFul.Client\PeeDeeFul.Client.csproj", "{A0AABF20-B49E-4B44-AD11-2C72EB8EEAF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeeDeeFul.Client", "PeeDeeFul.Client\PeeDeeFul.Client.csproj", "{A0AABF20-B49E-4B44-AD11-2C72EB8EEAF8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeeDeeFul.DocumentModel.Tests", "PeeDeeFul.DocumentModel.Tests\PeeDeeFul.DocumentModel.Tests.csproj", "{242D684B-7A8C-404E-AF2F-36FBFB982B11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeeDeeFul.Server", "PeeDeeFul.Server\PeeDeeFul.Server.csproj", "{F24CB290-A6A4-47E5-ADB7-15CA3B48BB38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PeeDeeFul.Server", "PeeDeeFul.Server\PeeDeeFul.Server.csproj", "{F24CB290-A6A4-47E5-ADB7-15CA3B48BB38}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeeDeeFul.Client.Tests", "PeeDeeFul.Client.Tests\PeeDeeFul.Client.Tests.csproj", "{092E0AB9-D7F0-458D-9274-CA8C81A2BE04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PeeDeeFulTestConsole", "PeeDeeFulTestConsole\PeeDeeFulTestConsole.csproj", "{6A61BC0F-024D-46B0-B5C8-3CF6B9E13CC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{092E0AB9-D7F0-458D-9274-CA8C81A2BE04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{092E0AB9-D7F0-458D-9274-CA8C81A2BE04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{092E0AB9-D7F0-458D-9274-CA8C81A2BE04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A61BC0F-024D-46B0-B5C8-3CF6B9E13CC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A61BC0F-024D-46B0-B5C8-3CF6B9E13CC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A61BC0F-024D-46B0-B5C8-3CF6B9E13CC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A61BC0F-024D-46B0-B5C8-3CF6B9E13CC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -30,12 +30,32 @@ namespace PeeDeeFul.DocumentModel
         }
 
 
+
+        /// <summary>
+        /// Adds the given <see cref="Text"/> object to the paragraph.
+        /// </summary>
+        /// <param name="text">The text to add.</param>
+        /// <returns>Returns the current paragraph instance.</returns>
         public Paragraph Add(Text text)
         {
-            this.Add(text);
+            base.Add(text);
             return this;
         }
 
+        /// <summary>
+        /// Adds a space to the current section.
+        /// </summary>
+        public Paragraph AddSpace()
+        {
+            this.AddText(" ");
+            return this;
+        }
+
+        /// <summary>
+        /// Adds the given string as a <see cref="Text"/> object to the current paragraph
+        /// and returns the <see cref="Text"/> object.
+        /// </summary>
+        /// <param name="text">The string to add as text.</param>
         public Text AddText(string text)
         {
             var t = new Text(text);

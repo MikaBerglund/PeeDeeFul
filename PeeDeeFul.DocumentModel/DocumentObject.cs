@@ -64,6 +64,15 @@ namespace PeeDeeFul.DocumentModel
 
 
         /// <summary>
+        /// Returns the parent object as the given type, or <c>null</c>.
+        /// </summary>
+        /// <typeparam name="TParent">The type of the parent object.</typeparam>
+        public TParent GetParent<TParent>() where TParent : DocumentObject
+        {
+            return this.Parent as TParent;
+        }
+
+        /// <summary>
         /// Writes the MDDDL (MigraDoc Document Description Language) that represents the current object to the given writer.
         /// </summary>
         /// <param name="writer">The writer to write the DDL to.</param>
