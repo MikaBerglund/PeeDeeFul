@@ -15,7 +15,7 @@ namespace PeeDeeFul.Client
 
         internal DocumentActions(PdfClientContext context)
         {
-            this.Context = context;
+            this.Context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         private PdfClientContext Context { get; set; }
@@ -47,7 +47,7 @@ namespace PeeDeeFul.Client
                 await strm.WriteAsync(buffer, 0, buffer.Length);
             }
 
-            using (var response = await req.GetResponseAsync())
+            using (var response = await this.Context.ExecuteRequestAsync(req))
             {
                 using (var strm = response.GetResponseStream())
                 {

@@ -37,6 +37,7 @@ namespace PeeDeeFul.Client
             this.SetUrl(appNameOrUrl);
             this.Authenticator = authenticator ?? throw new ArgumentNullException(nameof(authenticator));
             this.Documents = new DocumentActions(this);
+            this.Images = new ImageActions(this);
         }
 
 
@@ -47,15 +48,16 @@ namespace PeeDeeFul.Client
         public RequestAuthenticator Authenticator { get; private set; }
 
         /// <summary>
-        /// Returns a set of document actions.
-        /// </summary>
-        public DocumentActions Documents { get; private set; }
-
-        /// <summary>
         /// Returns URL to the functions application to communicate with.
         /// </summary>
         public Uri BaseUrl { get; private set; }
 
+        /// <summary>
+        /// Returns a set of document actions.
+        /// </summary>
+        public DocumentActions Documents { get; private set; }
+
+        public ImageActions Images { get; private set; }
 
 
 
@@ -75,6 +77,18 @@ namespace PeeDeeFul.Client
         internal HttpWebRequest CreatePostRequest(string relativeUrl)
         {
             return this.CreateRequest("POST", relativeUrl);
+        }
+
+        /// <summary>
+        /// Authenticates the request using the configured authenticator, executes the request
+        /// and returns the responses.
+        /// </summary>
+        /// <param name="request">The request to execute.</param>
+        /// <returns></returns>
+        internal async Task<WebResponse> ExecuteRequestAsync(HttpWebRequest request)
+        {
+            await this.Authenticator.AuthenticateRequestAsync(request);
+            return await request.GetResponseAsync();
         }
 
 
