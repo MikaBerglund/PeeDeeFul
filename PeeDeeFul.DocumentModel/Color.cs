@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace PeeDeeFul.DocumentModel
@@ -35,5 +36,12 @@ namespace PeeDeeFul.DocumentModel
             get { return this.GetProperty<uint>(nameof(B)); }
             set { this.SetProperty(nameof(B), value); }
         }
+
+
+        public override void WriteDdl(TextWriter writer)
+        {
+            writer.Write("RGB({0},{1},{2})", this.R, this.G, this.B);
+        }
+
     }
 }

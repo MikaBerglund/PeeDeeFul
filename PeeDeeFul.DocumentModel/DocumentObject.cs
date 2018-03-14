@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -61,6 +62,15 @@ namespace PeeDeeFul.DocumentModel
         /// </summary>
         public DocumentObject Parent { get; internal set; }
 
+
+        private static CultureInfo NumberCulture = new CultureInfo("en-US");
+        /// <summary>
+        /// Returns the format provider that is used to format numbers with.
+        /// </summary>
+        protected IFormatProvider NumberFormatProvider
+        {
+            get { return NumberCulture; }
+        }
 
 
         /// <summary>

@@ -21,13 +21,11 @@ namespace PeeDeeFul.DocumentModel
         public UnitType Type { get; private set; }
 
 
-        private static CultureInfo NumberCulture = new CultureInfo("en-US");
-
         public override void WriteDdl(TextWriter writer)
         {
             if (this.Type != UnitType.Point) writer.Write("\"");
 
-            writer.Write(this.Value.ToString(NumberCulture));
+            writer.Write(this.Value.ToString(this.NumberFormatProvider));
 
             switch(this.Type)
             {
