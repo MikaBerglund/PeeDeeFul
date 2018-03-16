@@ -37,7 +37,6 @@ namespace PeeDeeFul.Client
             this.SetUrl(appNameOrUrl);
             this.Authenticator = authenticator ?? throw new ArgumentNullException(nameof(authenticator));
             this.Documents = new DocumentActions(this);
-            this.Images = new ImageActions(this);
         }
 
 
@@ -56,8 +55,6 @@ namespace PeeDeeFul.Client
         /// Returns a set of document actions.
         /// </summary>
         public DocumentActions Documents { get; private set; }
-
-        public ImageActions Images { get; private set; }
 
 
 

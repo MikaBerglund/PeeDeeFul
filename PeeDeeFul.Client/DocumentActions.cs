@@ -29,6 +29,10 @@ namespace PeeDeeFul.Client
         /// <param name="target">The stream to write the rendered PDF document to.</param>
         public async Task RenderAsync(Document document, Stream target)
         {
+
+            await this.PrepareDocumentAsync(document);
+
+
             var sb = new StringBuilder();
             using (var writer = new StringWriter(sb))
             {
@@ -54,6 +58,38 @@ namespace PeeDeeFul.Client
                     await strm.CopyToAsync(target);
                 }
             }
+        }
+
+
+
+        /// <summary>
+        /// This method is called just before it is sent to the server. It processed the images on the document
+        /// and loads any referenced files and encodes them inside of the image object so that the image is
+        /// available on the server when rendering the PDF document.
+        /// </summary>
+        /// <param name="document"></param>
+        /// <returns></returns>
+        private async Task PrepareDocumentAsync(Document document)
+        {
+            await this.PrepareImagesAsync(document);
+        }
+
+        private async Task PrepareImagesAsync(DocumentObject parent)
+        {
+            foreach(var child in parent.Children)
+            {
+                if(child is Image)
+                {
+                    await this.PrepareImageAsync((Image)child);
+                }
+
+                await this.PrepareImagesAsync(child);
+            }
+        }
+
+        private async Task PrepareImageAsync(Image image)
+        {
+
         }
     }
 }

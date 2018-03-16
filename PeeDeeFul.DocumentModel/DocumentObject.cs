@@ -72,7 +72,6 @@ namespace PeeDeeFul.DocumentModel
             get { return NumberCulture; }
         }
 
-
         /// <summary>
         /// Returns the parent object as the given type, or <c>null</c>.
         /// </summary>
@@ -109,7 +108,12 @@ namespace PeeDeeFul.DocumentModel
         /// <summary>
         /// Adds the given object as a child object.
         /// </summary>
-        /// <param name="child"></param>
+        /// <param name="child">The child to add.</param>
+        /// <remarks>
+        /// This method must always be used to add child objects to a document object because this
+        /// method takes also care of setting the <see cref="Parent"/> and <see cref="Document"/>
+        /// properties correctly.
+        /// </remarks>
         protected void Add(DocumentObject child)
         {
             if (null == child) throw new ArgumentNullException(nameof(child));

@@ -71,6 +71,45 @@ namespace PeeDeeFul.DocumentModel
             set { this.SetProperty(nameof(ScaleWidth), value); }
         }
 
+        /// <summary>
+        /// Sets or returns the reference to the image file.
+        /// </summary>
+        public FileInfo SourceFile
+        {
+            get { return this.GetProperty<FileInfo>(nameof(SourceFile)); }
+            set
+            {
+                this.SetProperty(nameof(SourceFile), value);
+                if(null != value)
+                {
+                    this.Name = value.Name;
+                    this.SourceUrl = null; // If file reference is set, then we clear the URL reference.
+                }
+
+                // Clear the Base64 data to ensure that it gets updated to match the change in the property.
+                this.Base64Data = null;
+            }
+        }
+
+        /// <summary>
+        /// Sets or returns the reference to the image as a URL. When the document is processed,
+        /// this image is downloaded and included in the document.
+        /// </summary>
+        public Uri SourceUrl
+        {
+            get { return this.GetProperty<Uri>(nameof(SourceUrl)); }
+            set
+            {
+                this.SetProperty(nameof(SourceUrl), value);
+                if(null != value)
+                {
+                    this.SourceFile = null; // If URL reference is set, then we clear the file reference.
+                }
+
+                // Clear the Base64 data to ensure that it gets updated to match the change in the property.
+                this.Base64Data = null;
+            }
+        }
 
 
 
