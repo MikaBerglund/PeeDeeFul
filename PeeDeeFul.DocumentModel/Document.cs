@@ -13,7 +13,7 @@ namespace PeeDeeFul.DocumentModel
     /// You can customize how doucuments look by inheriting from this class and overriding its methods and properties. You
     /// can also create new document types that introduce their own elements.
     /// </remarks>
-    public class Document : ContainerObject
+    public class Document : DocumentObject
     {
         /// <summary>
         /// Creates a new document.

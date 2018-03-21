@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PeeDeeFul.DocumentModel
 {
-    public class Paragraph : ContainerObject
+    public class Paragraph : DocumentObject
     {
         public Paragraph() : this(null) { }
 

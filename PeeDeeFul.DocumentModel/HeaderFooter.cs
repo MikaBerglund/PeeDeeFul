@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PeeDeeFul.DocumentModel
 {
-    public class HeaderFooter : ContainerObject
+    public class HeaderFooter : DocumentObject
     {
         public HeaderFooter() : this(null) { }
 

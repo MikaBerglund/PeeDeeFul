@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PeeDeeFul.DocumentModel
 {
-    public class FormattedText : ContainerObject
+    public class FormattedText : DocumentObject
     {
         public FormattedText() : this(null) { }
 

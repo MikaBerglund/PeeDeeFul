@@ -87,7 +87,10 @@ namespace PeeDeeFul.DocumentModel
         /// <param name="writer">The writer to write the DDL to.</param>
         public virtual void WriteDdl(TextWriter writer)
         {
-
+            foreach(var child in this.Children)
+            {
+                child.WriteDdl(writer);
+            }
         }
 
         /// <summary>

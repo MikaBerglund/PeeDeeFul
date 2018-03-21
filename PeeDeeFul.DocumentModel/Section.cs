@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PeeDeeFul.DocumentModel
 {
-    public class Section : ContainerObject
+    public class Section : DocumentObject
     {
         public Section() : base(null) { }
 
