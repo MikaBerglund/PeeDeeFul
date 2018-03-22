@@ -80,16 +80,12 @@ namespace PeeDeeFul.Client
             {
                 if(child is Image)
                 {
-                    await this.PrepareImageAsync((Image)child);
+                    var img = child as Image;
+                    await img.PrepareSourcesAsync();
                 }
 
                 await this.PrepareImagesAsync(child);
             }
-        }
-
-        private async Task PrepareImageAsync(Image image)
-        {
-
         }
     }
 }

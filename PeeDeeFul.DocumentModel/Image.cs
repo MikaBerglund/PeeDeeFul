@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -113,6 +114,18 @@ namespace PeeDeeFul.DocumentModel
 
 
 
+        public async Task PrepareSourcesAsync()
+        {
+            if(null != this.SourceFile)
+            {
+
+            }
+            else if(null != this.SourceUrl)
+            {
+                await this.DownloadImageAsync(this.SourceUrl);
+            }
+        }
+
         public override void WriteDdl(TextWriter writer)
         {
             writer.Write("\\image");
@@ -132,5 +145,29 @@ namespace PeeDeeFul.DocumentModel
 
         }
 
+
+
+        private async Task DownloadImageAsync(Uri sourceUrl)
+        {
+            using (var client = new WebClient())
+            {
+                this.LoadBuffer(await client.DownloadDataTaskAsync(SourceUrl));
+            }
+        }
+
+        private async Task LoadFileAsync(FileInfo sourceFile)
+        {
+            using (var strm = sourceFile.OpenRead())
+            {
+                byte[] buffer = new byte[strm.Length];
+                await strm.ReadAsync(buffer, 0, buffer.Length);
+                this.LoadBuffer(buffer);
+            }
+        }
+
+        private void LoadBuffer(byte[] buffer)
+        {
+            this.Base64Data = Convert.ToBase64String(buffer);
+        }
     }
 }
