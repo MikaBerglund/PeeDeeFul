@@ -8,10 +8,22 @@ PeeDeeFul is built in .NET, but many of its components are written for
 [.NET Standard](https://blogs.msdn.microsoft.com/dotnet/2016/09/26/introducing-net-standard/), so you can 
 use PeeDeeFul on many different platforms and on many different devices.
 
-The solution consists of the following elements.
 
-PeeDeeFul.DocumentModel
------------------------
+Design Principle
+----------------
+
+The main design principle of *PeeDeeFul* is to separate DOM manipulation from document rendering. DOM
+manipulation is done with ligh-weight components that can be used on virtually any device and any platform.
+Document rendering, which may require a bit more resources than DOM manipulation, is a separate component
+that can be hosted as a service in the cloud.
+
+
+PeeDeeFul Elements
+------------------
+
+PeeDeeFul is built with the following elements.
+
+#### PeeDeeFul.DocumentModel
 
 A class library targetting *.NET Standard*. You use this library to model your PDF documents much like you use
 a HTML DOM to model a HTML document or an XML DOM to model an XML document.
@@ -20,9 +32,12 @@ The DOM can be serialized to [MDDDL (MigraDoc Document Description Language)](ht
 which is a text based representation of a PDF document. This DDL can then be parsed by *MigraDoc* and
 rendered into an actual PDF document.
 
+This is one of the design principles in *PeeDeeFul* - Separate DOM manipulation from document rendering,
+where DOM manipulation is a light-weight component that can be done in virtually any client, and rendering
+which may require more resources, but can be hosted as a service in the cloud.
 
-PeeDeeFul.Server
-----------------
+
+#### PeeDeeFul.Server
 
 Takes care of rendering PDF DOMs to actual PDF documents. Built as an 
 [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) application that exposes HTTP 
@@ -37,8 +52,7 @@ Allthough you can communicate directly with the HTTP endpoints exposed by the ap
 to do with the *PeeDeeFul.Client* library.
 
 
-PeeDeeFul.Client
-----------------
+#### PeeDeeFul.Client
 
 A class library targetting *.NET Standard*. This library is responsible for communicating with the
 *PeeDeeFul.Server* application.
@@ -49,8 +63,7 @@ serializes the DOM to *MDDDL* before sending it to the server. The server takes 
 and renders it to a PDF document and returns it.
 
 
-PeeDeeFul.js
-------------
+#### PeeDeeFul.js
 
 Enables PDF document creation directly in your JavaScript application. A JavaScript library written in
 [TypeScript](https://www.typescriptlang.org) that exposes classes forbuilding a PDF DOM like the one in 
