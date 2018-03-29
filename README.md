@@ -21,7 +21,7 @@ that can be hosted as a service in the cloud.
 PeeDeeFul Elements
 ------------------
 
-PeeDeeFul is built with the following elements.
+PeeDeeFul is built of the following elements.
 
 #### PeeDeeFul.DocumentModel
 
