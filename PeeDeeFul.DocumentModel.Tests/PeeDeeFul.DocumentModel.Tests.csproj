@@ -65,7 +65,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DOMTests.cs" />
+    <Compile Include="ImageTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Tools.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -75,6 +82,15 @@
       <Project>{44cadc59-d91a-4d11-9a3b-d27d9dd82215}</Project>
       <Name>PeeDeeFul.DocumentModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\basketball01.jpg" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

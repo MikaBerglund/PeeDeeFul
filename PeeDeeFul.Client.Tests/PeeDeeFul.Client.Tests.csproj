@@ -44,13 +44,33 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.2.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="MigraDoc.DocumentObjectModel-gdi, Version=1.50.4820.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-gdi.1.50.4820-RC1\lib\net20\MigraDoc.DocumentObjectModel-gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering-gdi, Version=1.50.4820.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-gdi.1.50.4820-RC1\lib\net20\MigraDoc.Rendering-gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.RtfRendering-gdi, Version=1.50.4820.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-gdi.1.50.4820-RC1\lib\net20\MigraDoc.RtfRendering-gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp-gdi, Version=1.50.4820.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-gdi.1.50.4820-RC1\lib\net20\PdfSharp-gdi.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting-gdi, Version=1.50.4820.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp-MigraDoc-gdi.1.50.4820-RC1\lib\net20\PdfSharp.Charting-gdi.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientContextTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ImageTests.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -64,6 +84,12 @@
       <Project>{44CADC59-D91A-4D11-9A3B-D27D9DD82215}</Project>
       <Name>PeeDeeFul.DocumentModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

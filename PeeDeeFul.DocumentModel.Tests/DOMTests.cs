@@ -13,7 +13,7 @@ namespace PeeDeeFul.DocumentModel.Tests
         {
             var doc = new Document();
             doc.AddSection();
-            ParseDdl(doc);
+            Tools.ParseDdl(doc);
         }
 
         [TestMethod]
@@ -31,7 +31,7 @@ namespace PeeDeeFul.DocumentModel.Tests
                 PageWidth = new Unit(480, UnitType.Point)
             });
 
-            ParseDdl(doc);
+            Tools.ParseDdl(doc);
         }
 
         [TestMethod]
@@ -39,8 +39,8 @@ namespace PeeDeeFul.DocumentModel.Tests
         {
             var doc = new Document().AddSection().Document;
             doc.LastSection.SetPrimaryHeader();
-            
-            ParseDdl(doc);
+
+            Tools.ParseDdl(doc);
         }
 
         [TestMethod]
@@ -54,7 +54,7 @@ namespace PeeDeeFul.DocumentModel.Tests
                 Title = "Title is everything"
             });
 
-            ParseDdl(doc);
+            Tools.ParseDdl(doc);
         }
 
         [TestMethod]
@@ -63,7 +63,7 @@ namespace PeeDeeFul.DocumentModel.Tests
             var doc = new Document().AddSection().Document;
             doc.LastSection.AddParagraph("Hello World! Invoking this method must not cause an exception.");
 
-            ParseDdl(doc);
+            Tools.ParseDdl(doc);
         }
 
         [TestMethod]
@@ -77,33 +77,6 @@ namespace PeeDeeFul.DocumentModel.Tests
             Assert.IsTrue(ddl.Contains(s), "The created DDL must contain the string we put there.");
         }
 
-
-
-        /// <summary>
-        /// Serializes the given document to DDL and renders a PDF document from it to make sure that 
-        /// the generated DDL is valid.
-        /// </summary>
-        private void ParseDdl(Document doc)
-        {
-            var sb = new StringBuilder();
-            using (var writer = new StringWriter(sb))
-            {
-                doc.WriteDdl(writer);
-            }
-            var ddl = sb.ToString();
-
-            var mDoc = MigraDoc.DocumentObjectModel.IO.DdlReader.DocumentFromString(ddl);
-            MigraDoc.Rendering.PdfDocumentRenderer renderer = new MigraDoc.Rendering.PdfDocumentRenderer(true)
-            {
-                Document = mDoc
-            };
-            renderer.RenderDocument();
-
-            using (var strm = new MemoryStream())
-            {
-                renderer.PdfDocument.Save(strm);
-            }
-        }
 
     }
 }

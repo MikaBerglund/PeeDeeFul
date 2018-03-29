@@ -43,6 +43,11 @@ namespace PeeDeeFulTestConsole
             RenderDocument(doc);
         }
 
+        static void CreatePdf02()
+        {
+
+        }
+
 
         static PdfClientContext GetContext()
         {
@@ -53,6 +58,7 @@ namespace PeeDeeFulTestConsole
         {
             return $@"C:\Temp\{Guid.NewGuid()}.pdf";
         }
+
 
         static void RenderDocument(Document doc)
         {

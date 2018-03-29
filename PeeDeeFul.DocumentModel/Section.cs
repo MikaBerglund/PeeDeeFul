@@ -56,6 +56,32 @@ namespace PeeDeeFul.DocumentModel
             return this;
         }
 
+        public Section Add(Image img)
+        {
+            base.Add(img);
+            return this;
+        }
+
+        public Image AddImage(FileInfo sourceFile)
+        {
+            var img = new Image()
+            {
+                SourceFile = sourceFile
+            };
+            this.Add(img);
+            return img;
+        }
+
+        public Image AddImage(Uri sourceUrl)
+        {
+            var img = new Image()
+            {
+                SourceUrl = sourceUrl
+            };
+            this.Add(img);
+            return img;
+        }
+
         public Paragraph AddParagraph(string text)
         {
             var p = new Paragraph(this);

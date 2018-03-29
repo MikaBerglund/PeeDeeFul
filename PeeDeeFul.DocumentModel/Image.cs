@@ -114,11 +114,17 @@ namespace PeeDeeFul.DocumentModel
 
 
 
+        /// <summary>
+        /// This method takes care of preparing image sources by loading the images from the URL specified
+        /// in <see cref="SourceUrl"/> or the file specified in <see cref="SourceFile"/> and stores the
+        /// image in the <see cref="Base64Data"/> property for transfering to the server.
+        /// </summary>
+        /// <returns></returns>
         public async Task PrepareSourcesAsync()
         {
             if(null != this.SourceFile)
             {
-
+                await this.LoadFileAsync(this.SourceFile);
             }
             else if(null != this.SourceUrl)
             {
@@ -128,7 +134,22 @@ namespace PeeDeeFul.DocumentModel
 
         public override void WriteDdl(TextWriter writer)
         {
+            if (string.IsNullOrEmpty(this.Name)) this.Name = "image.jpg";
+
             writer.Write("\\image");
+            writer.Write("(/*");
+            writer.Write("{");
+
+            writer.Write("name: \"");
+            writer.Write(this.Name);
+            writer.Write("\"");
+
+            writer.Write(", data: \"");
+            writer.Write(this.Base64Data);
+            writer.Write("\"");
+
+            writer.Write("}");
+            writer.Write("*/)");
 
             writer.WriteLine();
             writer.WriteLine("[");
@@ -146,13 +167,11 @@ namespace PeeDeeFul.DocumentModel
         }
 
 
+        private static WebClient webClient = new WebClient();
 
         private async Task DownloadImageAsync(Uri sourceUrl)
         {
-            using (var client = new WebClient())
-            {
-                this.LoadBuffer(await client.DownloadDataTaskAsync(SourceUrl));
-            }
+            this.LoadBuffer(await webClient.DownloadDataTaskAsync(SourceUrl));
         }
 
         private async Task LoadFileAsync(FileInfo sourceFile)
@@ -162,6 +181,8 @@ namespace PeeDeeFul.DocumentModel
                 byte[] buffer = new byte[strm.Length];
                 await strm.ReadAsync(buffer, 0, buffer.Length);
                 this.LoadBuffer(buffer);
+
+                if (string.IsNullOrEmpty(this.Name)) this.Name = sourceFile.Name;
             }
         }
 
