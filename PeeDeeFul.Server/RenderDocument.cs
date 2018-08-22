@@ -16,8 +16,8 @@ namespace PeeDeeFul.Server
 {
     public static class RenderDocument
     {
-        [FunctionName("RenderDocument")]
-        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Function, "POST", Route = "Documents/Render")]HttpRequestMessage req, TraceWriter log)
+        [FunctionName("RenderDocumentDdl")]
+        public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Function, "POST", Route = "Documents/RenderDdl")]HttpRequestMessage req, TraceWriter log)
         {
             PdfDocument doc = null;
             PdfDocumentRenderer renderer = null;
